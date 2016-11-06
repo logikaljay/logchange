@@ -1,0 +1,14 @@
+{
+  "name": "logchange",
+  "version": "1.1.0",
+  "description": "Generate a changelog based on semantic versioning",
+  "main": "version.js",
+  "bin": {
+    "logchange": "./version.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jay Baker <logikal@gmail.com>",
+  "license": "ISC"
+}
