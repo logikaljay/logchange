@@ -1,5 +1,17 @@
 
 <!---
+<div data-major="1" data-minor="1" data-patch="0" data-commit="b5bca19" class="release-body commit">
+-->
+
+# v1.1.0
+**jbaker** released this on *Mon Nov 07 2016 11:12:23 GMT+1300 (NZDT)* - 1 commit makes up this release
+
+## Features
+* **version:** bump package.json version on run (b5bca19)
+
+
+
+<!---
 <div data-major="1" data-minor="0" data-patch="2" data-commit="9e665ee" class="release-body commit">
 -->
 
