@@ -13,12 +13,12 @@ program
     .option('-j, --json', 'just output a version as json')
     .option('-s, --stdout', 'output to stdout instead of file')
     .option('-f, --format <format>', 'format to output in [markdown, html]', 'markdown')
-    .option('-o, --file <file>', 'changelog file to read/write', 'CHANGELOG.html')
+    .option('-o, --file <file>', 'changelog file to read/write', 'CHANGELOG.md')
     .parse(process.argv)
 
 var template = program.format.toLowerCase() === 'html' ? html : markdown
-
 var file = program.file
+
 var changelogPath = join(process.env.PWD, file)
 
 var major = 0
