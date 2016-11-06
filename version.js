@@ -6,6 +6,7 @@ var {exec} = require('child_process')
 var program = require('commander')
 
 var Commit = require('./lib/commit')
+var {bump} = require('./lib/package')
 var {body: html} = require('./templates/html')
 var {body: markdown} = require('./templates/markdown')
 
@@ -67,7 +68,22 @@ exec(cmd, { maxBuffer: Infinity }, (err, data) => {
         return
     }
 
+    // don't build a changelog if there are no commits
+    var hasCommits = false
+    var sections = [breakingChanges, features, fixes]
+    sections.forEach((section) => {
+        if (section.length > 0) {
+            hasCommits = true
+        }
+    })
+
+    if (!hasCommits) {
+        console.log('There were no new commits to release.')
+        return
+    }
+
     buildChangelog(breakingChanges, features, fixes)
+    bumpVersion({ major, minor, patch })
 })
 
 var handleCommit = (commit) => {
@@ -93,19 +109,6 @@ var handleCommit = (commit) => {
 
 var buildChangelog = (...sections) => {
 
-    // don't write an empty section
-    var hasCommits = false
-    sections.forEach((section) => {
-        if (section.length > 0) {
-            hasCommits = true
-        }
-    })
-
-    if (!hasCommits) {
-        console.log('There were no new commits to release.')
-        return
-    }
-
     var newChangelog = template({ major, minor, patch }, lastCommit, ...sections)
     if (!program.stdout) {
         writeFileSync(changelogPath, newChangelog + oldChangelog)
@@ -114,4 +117,18 @@ var buildChangelog = (...sections) => {
     else {
         process.stdout.write(newChangelog + oldChangelog)
     }
+}
+
+var bumpVersion = (version) => {
+    if (program.stdout) {
+        return
+    }
+
+    var result = bump(version)
+    if (typeof result === 'undefined') {
+        return
+    }
+
+    var {file, oldVersion, newVersion} = result
+    console.log(`Bumped ${file} version from ${oldVersion} to ${newVersion}`)
 }
