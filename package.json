@@ -1,6 +1,6 @@
 {
   "name": "logchange",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Generate a changelog based on semantic versioning",
   "main": "version.js",
   "bin": {
