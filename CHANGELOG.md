@@ -1,5 +1,17 @@
 
 <!---
+<div data-major="1" data-minor="1" data-patch="1" data-commit="02d8333" class="release-body commit">
+-->
+
+# v1.1.1
+**jbaker** released this on *Wed Nov 09 2016 08:43:15 GMT+1300 (NZDT)* - 1 commit makes up this release
+
+## Fixes
+* **parse:** support uppercase/mixedcase types (02d8333)
+
+
+
+<!---
 <div data-major="1" data-minor="1" data-patch="0" data-commit="b5bca19" class="release-body commit">
 -->
 
