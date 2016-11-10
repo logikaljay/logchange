@@ -1,5 +1,17 @@
 
 <!---
+<div data-major="1" data-minor="1" data-patch="2" data-commit="fa296c2" class="release-body commit">
+-->
+
+# v1.1.2
+**jbaker** released this on *Thu Nov 10 2016 14:07:48 GMT+1300 (NZDT)* - 1 commit makes up this release
+
+## Fixes
+* **parse:** lastCommit undefined when not angular style (fa296c2)
+
+
+
+<!---
 <div data-major="1" data-minor="1" data-patch="1" data-commit="02d8333" class="release-body commit">
 -->
 
