@@ -1,5 +1,17 @@
 
 <!---
+<div data-major="1" data-minor="1" data-patch="3" data-commit="5513f2f" class="release-body commit">
+-->
+
+# v1.1.3
+**jbaker** released this on *Wed Nov 16 2016 09:12:31 GMT+1300 (NZDT)* - 1 commit makes up this release
+
+## Fixes
+* **commits:** crash when no data from exec (5513f2f)
+
+
+
+<!---
 <div data-major="1" data-minor="1" data-patch="2" data-commit="fa296c2" class="release-body commit">
 -->
 
