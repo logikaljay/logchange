@@ -59,16 +59,18 @@ if (lastCommit !== null && lastCommit.length > 0) {
 exec(cmd, { maxBuffer: Infinity }, (err, data) => {
     commits = data.split('_EOE_')
     var index = 0
-    lastCommit = new Commit(commits[index])
-
-    // lastCommit might not be an angular style commit message
-    while (typeof lastCommit.sha === 'undefined' && index < commits.length) {
-        index++
+    if (data.length > 0) {
         lastCommit = new Commit(commits[index])
-    }
 
-    commits = commits.reverse()
-    commits.forEach(handleCommit)
+        // lastCommit might not be an angular style commit message
+        while (typeof lastCommit.sha === 'undefined' && index < commits.length) {
+            index++
+            lastCommit = new Commit(commits[index])
+        }
+
+        commits = commits.reverse()
+        commits.forEach(handleCommit)
+    }
 
     if (program.json) {
         process.stdout.write(JSON.stringify({ version: `${major}.${minor}.${patch}`, display: `v${major}.${minor}.${patch}`, major, minor, patch }))
