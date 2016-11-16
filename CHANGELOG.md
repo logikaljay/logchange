@@ -1,5 +1,17 @@
 
 <!---
+<div data-major="1" data-minor="1" data-patch="4" data-commit="4c6ec75" class="release-body commit">
+-->
+
+# v1.1.4
+**jbaker** released this on *Wed Nov 16 2016 14:49:45 GMT+1300 (NZDT)* - 1 commit makes up this release
+
+## Fixes
+* **parse:** fix scopes with hyphens (4c6ec75)
+
+
+
+<!---
 <div data-major="1" data-minor="1" data-patch="3" data-commit="5513f2f" class="release-body commit">
 -->
 
