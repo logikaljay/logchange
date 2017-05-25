@@ -58,6 +58,7 @@ if (lastCommit !== null && lastCommit.length > 0) {
 
 exec(cmd, { maxBuffer: Infinity }, (err, data) => {
     commits = data.split('_EOE_')
+
     var index = 0
     if (data.length > 0) {
         lastCommit = new Commit(commits[index])
@@ -69,7 +70,7 @@ exec(cmd, { maxBuffer: Infinity }, (err, data) => {
         }
 
         commits = commits.reverse()
-        commits.forEach(handleCommit)
+        handleCommits(commits)
     }
 
     if (program.json) {
@@ -95,24 +96,46 @@ exec(cmd, { maxBuffer: Infinity }, (err, data) => {
     bumpVersion({ major, minor, patch })
 })
 
-var handleCommit = (commit) => {
-    var data = new Commit(commit)
+var handleCommits = (commits) => {
 
-    if (data.type === 'fix') {
-        fixes.push(data)
-        patch++
-    }
-    else if (data.type === 'feat') {
-        features.push(data)
-        patch = 0
-        minor++
+    // we don't want to bump 6 feature version at once if there were 6 `feat` commits since last time we ran - we only want to bump once.
+
+    var bumpMajor = false
+    var bumpMinor = false
+    var bumpPatch = false
+
+    // iterate over our commits
+    for (var c in commits) {
+        var commit = new Commit(commits[c])
+
+        if (commit.type === 'fix') {
+            bumpPatch = true
+            fixes.push(commit)
+        }
+        else if (commit.type === 'feat') {
+            bumpMinor = true
+            features.push(commit)
+        }
+        else if (commit.type === 'major') {
+            bumpMajor = true
+            breakingChanges.push(commit)
+        }
     }
 
-    if (data.breaking) {
-        breakingChanges.push(data)
+    if (bumpMajor) {
+        major++
         minor = 0
         patch = 0
-        major++
+        return
+    }
+    else if (bumpMinor) {
+        minor++
+        patch = 0;
+        return
+    }
+    else if (bumpPatch) {
+        patch++
+        return
     }
 }
 

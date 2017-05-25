@@ -6,9 +6,9 @@
   "bin": {
     "logchange": "./version.js"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Jay Baker <logikal@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
 }
