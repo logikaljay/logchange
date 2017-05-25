@@ -76,11 +76,11 @@ This will increment the PATCH version.
 
 ## TODO
 
-[x] fix issue with multiple version being bumped per execution.
-[ ] rewrite to support testing/coverage
-[ ] rework options to be a bit more intuitive
-[ ] add `logchange scopes` to iterate over the git log and return all the scopes already used
-[ ] create contributors template, automatically increment number of commits against each contributor
-[ ] add `logchange current` to output the current version
-[ ] add `logchange next` to output what the next version will be
-[ ] format the scopes to all start with a capital letter, regardless of what case was used in the commit
+- [x] fix issue with multiple version being bumped per execution.
+- [ ] rewrite to support testing/coverage
+- [ ] rework options to be a bit more intuitive
+- [ ] add `logchange scopes` to iterate over the git log and return all the scopes already used
+- [ ] create contributors template, automatically increment number of commits against each contributor
+- [ ] add `logchange current` to output the current version
+- [ ] add `logchange next` to output what the next version will be
+- [ ] format the scopes to all start with a capital letter, regardless of what case was used in the commit
