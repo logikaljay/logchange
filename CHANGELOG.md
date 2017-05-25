@@ -1,5 +1,17 @@
 
 <!---
+<div data-major="1" data-minor="1" data-patch="5" data-commit="c6d37f1" class="release-body commit">
+-->
+
+# v1.1.5
+**jbaker** released this on *Fri May 26 2017 09:41:35 GMT+1200 (NZST)* - 1 commit makes up this release
+
+## Fixes
+* **Version:** fixed the way version are bumped (c6d37f1)
+
+
+
+<!---
 <div data-major="1" data-minor="1" data-patch="4" data-commit="4c6ec75" class="release-body commit">
 -->
 
