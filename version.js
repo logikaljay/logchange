@@ -2,4 +2,6 @@
 
 const {getCurrent} = require('./lib/version')
 
-var currentVersion = 
+var currentVersion = getCurrent()
+
+console.log(currentVersion)
