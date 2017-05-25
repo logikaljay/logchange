@@ -6,9 +6,17 @@
   "bin": {
     "logchange": "./version.js"
   },
+  "scripts": {
+    "test": "istanbul cover _mocha -- -R spec"
+  },
   "author": "Jay Baker <logikal@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "commander": "^2.9.0"
+  },
+  "devDependencies": {
+    "code": "^4.0.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2"
   }
 }
