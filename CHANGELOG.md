@@ -1,5 +1,25 @@
 
 <!---
+<div data-major="2" data-minor="0" data-patch="0" data-commit="afc2394" class="release-body commit">
+-->
+
+# v2.0.0
+**jbaker** released this on *Thu Jun 01 2017 15:44:03 GMT+1200 (NZST)* - 3 commits make up this release
+
+## Breaking Changes
+* **rewrite:** complete rewrite of logchange (afc2394)
+
+
+## Features
+* **Version:** parse version correctly (b4d731a)
+
+
+## Fixes
+* **CLI:** updating cli (bee9b2c)
+
+
+
+<!---
 <div data-major="1" data-minor="1" data-patch="5" data-commit="c6d37f1" class="release-body commit">
 -->
 
