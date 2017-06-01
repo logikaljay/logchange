@@ -1,4 +1,4 @@
-#!/usr/local/bin/node 
+#!/usr/bin/env node
 
 var {readFileSync, writeFileSync, existsSync: exists} = require('fs')
 var {join} = require('path')
