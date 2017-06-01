@@ -7,7 +7,7 @@ var template = {
         })
 
         var output = `
-            <div data-major="${version.major}" data-minor="${version.minor}" data-patch="${version.patch}" data-commit="${lastCommit.sha}" class="release-body commit">
+            <div data-major="${version.major}" data-minor="${version.minor}" data-patch="${version.patch}" data-commit="${lastCommit}" class="release-body commit">
                 <div class="release-header">
                     <h1 class="release-title">v${version.major}.${version.minor}.${version.patch}</h1>
                     <p class="release-authorship"><strong>${process.env.LOGNAME}</strong> released this on ${new Date()} - ${commits.length} ${commits.length !== 1 ? 'commits' : 'commit'} ${commits.length === 1 ? 'makes' : 'make'} up this release</p>

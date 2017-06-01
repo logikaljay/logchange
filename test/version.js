@@ -66,6 +66,106 @@ describe('Version parser', () => {
         expect(version.major).to.equal(0)
         expect(version.minor).to.equal(0)
         expect(version.patch).to.equal(0)
+        process.chdir('../')
+
+        done()
+    })
+
+    it(`should return the next version when a patch is committed`, (done) => {
+        var commits = [{
+            sha: '123456',
+            type: 'fix',
+            breaking: false,
+            scope: 'Something',
+            message: 'fixed something',
+            author: 'logikal@gmail.com'
+        }]
+
+        var current = Version.getCurrent()
+        var next = Version.getNext(commits)
+        expect(next.major).to.equal(current.major)
+        expect(next.minor).to.equal(current.minor)
+        expect(next.patch).to.equal(current.patch + 1)
+
+        done()
+    })
+
+    it(`should return the next version when a feature and a patch are committed`, (done) => {
+
+        var commits = [
+            { 
+                sha: '96fd323',
+                type: 'feat',
+                breaking: false,
+                scope: 'Something',
+                message: 'did something fun',
+                author: 'logikal@gmail.com' 
+            }, { 
+                sha: '02d8333',
+                type: 'fix',
+                breaking: false,
+                scope: 'Parse',
+                message: 'fixed something important',
+                author: 'logikal@gmail.com' 
+            }
+        ]
+
+        var current = Version.getCurrent()
+        var next = Version.getNext(commits)
+        expect(next.major).to.equal(current.major)
+        expect(next.minor).to.equal(current.minor+1)
+        expect(next.patch).to.equal(0)
+
+        done()
+
+    })
+
+    it(`should return the next version when a feature and a breaking change are committed`, (done) => {
+
+        var commits = [
+            { 
+                sha: '96fd323',
+                type: 'feat',
+                breaking: false,
+                scope: 'Something',
+                message: 'did something fun',
+                author: 'logikal@gmail.com' 
+            }, { 
+                sha: '02d8333',
+                type: 'breaking',
+                breaking: true,
+                scope: 'Something',
+                message: 'i broke it all',
+                author: 'logikal@gmail.com' 
+            }
+        ]
+
+        var current = Version.getCurrent()
+        var next = Version.getNext(commits)
+        expect(next.major).to.equal(current.major+1)
+        expect(next.minor).to.equal(0)
+        expect(next.patch).to.equal(0)
+
+        done()
+
+    })
+
+    it(`should return the same current version when there are no features or fixes`, (done) => {
+        var commits = [{
+            sha: '123abc',
+            type: 'chore',
+            breaking: false,
+            scope: 'Something',
+            message: 'Did something',
+            author: 'logikal@gmail.com'
+        }]
+
+        var current = Version.getCurrent()
+        var next = Version.getNext(commits)
+
+        expect(next.major).to.equal(current.major)
+        expect(next.minor).to.equal(current.minor)
+        expect(next.patch).to.equal(current.patch)
 
         done()
     })

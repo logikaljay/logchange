@@ -1,0 +1,49 @@
+#!/usr/local/bin/node 
+
+const {version: pkgVersion} = require('../package')
+const path = require('path')
+const {spawn} = require('child_process')
+
+const Helpers = require(path.join(__dirname, 'helpers'))
+var format = 'markdown'
+
+
+const defaultCmd = 'version'
+var commands = new Map()
+commands.set('version', __dirname)
+commands.set('current', __dirname)
+commands.set('next', __dirname)
+commands.set('scopes', __dirname)
+commands.set('contributors', __dirname)
+
+var cmd = process.argv[2]
+var args
+
+if (new Set(['--version', '-v']).has(cmd)) {
+  console.log(`${pkgVersion}`)
+
+  return
+}
+
+if (commands.has(cmd)) {
+    args = process.argv.slice(3)
+}
+else {
+    cmd = defaultCmd
+    args = process.argv.slice(2)
+}
+
+const bin = path.join(__dirname, 'lc-' + cmd)
+
+const startProcess = () => {
+    const proc = spawn(bin, args, { stdio: 'inherit', customFds: [0, 1, 2] })
+    proc.on('close', (code) => process.exit(code))
+    proc.on('error', (err) => {
+        console.error(err)
+        process.exit(1)
+    })
+
+    return proc
+}
+
+var proc = startProcess()

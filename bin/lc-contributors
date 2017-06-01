@@ -1,0 +1,42 @@
+#!/usr/local/bin/node 
+var path = require('path')
+var Commit = require('../lib/commit')
+var Contributors = require('../lib/contributors')
+var Helpers = require(path.join(__dirname, 'helpers'))
+
+var format = '%M.%m.%p'
+
+const OPTIONS = [
+    ['-h', '--help', 'Shows this message'],
+    ['-j', '--json', 'Outputs the contributors as JSON']
+]
+
+var help = Helpers.help(OPTIONS)
+
+var cmd = process.argv[2]
+var args
+
+var json = false
+
+json = new Set(['--json', '-j']).has(cmd)
+
+if (new Set(['--help', '-h']).has(cmd)) {
+  process.stdout.write(help)
+  return
+}
+
+
+var data = Commit.getCommits()
+var commits = Commit.parseCommits(data)
+var obj = Contributors.getFromCommits(commits)
+if (json) {
+    process.stdout.write(JSON.stringify(obj))
+    return
+}
+
+process.stdout.write(`
+  Contributors:
+
+    ${obj.map(c => `* ${c.author} (${c.commits} ${c.commits !== 1 ? 'commits' : 'commit'})`).join('\n    ')}
+
+`)
