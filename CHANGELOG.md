@@ -1,4 +1,3 @@
-
 <!---
 <div data-major="2" data-minor="0" data-patch="1" data-commit="11530bb" class="release-body commit">
 -->
@@ -29,6 +28,16 @@
 ## Fixes
 * **CLI:** updating cli (bee9b2c)
 
+
+<!---
+<div data-major="1" data-minor="1" data-patch="6" data-commit="6e8a71c" class="release-body commit">
+-->
+
+# v1.1.6
+**jbaker** released this on *Thu Jun 01 2017 15:45:01 GMT+1200 (NZST)* - 1 commit makes up this release
+
+## Fixes
+* **hashbang:** use /usr/bin/env node instead of /usr/local/bin/node (6e8a71c)
 
 
 <!---
