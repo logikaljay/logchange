@@ -1,5 +1,17 @@
 
 <!---
+<div data-major="2" data-minor="0" data-patch="1" data-commit="11530bb" class="release-body commit">
+-->
+
+# v2.0.1
+**jbaker** released this on *Tue Jun 13 2017 10:36:45 GMT+1200 (NZST)* - 1 commit makes up this release
+
+## Fixes
+* **CLI:** fixing incorrect hashbangs (11530bb)
+
+
+
+<!---
 <div data-major="2" data-minor="0" data-patch="0" data-commit="afc2394" class="release-body commit">
 -->
 
