@@ -1,14 +1,15 @@
 
 <!---
-<div data-major="2" data-minor="0" data-patch="3" data-commit="880695c" class="release-body commit">
+<div data-major="2" data-minor="0" data-patch="2" data-commit="c3b321c" class="release-body commit">
 -->
 
-# v2.0.3
-**jbaker** released this on *Tue Jun 13 2017 10:41:31 GMT+1200 (NZST)* - 2 commits make up this release
+# v2.0.2
+**jbaker** released this on *Tue Jun 13 2017 10:44:05 GMT+1200 (NZST)* - 2 commits make up this release
 
 ## Fixes
-* **hashbang:** use /usr/bin/env node instead of /usr/local/bin/node (6e8a71c)
 * **Package:** updating binary in package (880695c)
+* **Hashbang:** use /usr/bin/env node instead of /usr/local/bin/node (6e8a71c)
+
 
 
 <!---
