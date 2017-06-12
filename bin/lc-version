@@ -1,0 +1,96 @@
+#!/usr/bin/env node
+
+const {version: pkgVersion} = require('../package')
+var path = require('path')
+var fs = require('fs')
+
+var Commit = require('../lib/commit')
+var Version = require('../lib/version')
+var Changelog = require('../lib/changelog')
+var Templates = require('../templates')
+var Package = require('../lib/package')
+var format = 'markdown'
+var template = Templates['markdown']
+var stdout = false
+
+var cmd = process.argv[2]
+
+const Helpers = require(path.join(__dirname, 'helpers'))
+
+const OPTIONS = [
+    ['-h', '--help', 'Shows this message'],
+    ['-f', '--format', 'Outputs the version how you want it', format],
+    ['-s', '--stdout', 'Output new changelog to stdout']
+]
+
+const COMMANDS = [
+    ['current', 'Shows the current version'],
+    ['next', 'Shows the next version'],
+    ['version', 'Update package and changelog'],
+    ['contributors', 'Shows the contributors to this project']
+]
+
+const help = Helpers.help(OPTIONS, COMMANDS)
+
+if (new Set(['--help', '-h']).has(cmd) || cmd === 'help') {
+  process.stdout.write(help)
+
+  return
+}
+
+if (new Set(['--version', '-v']).has(cmd)) {
+  console.log(`${pkgVersion}`)
+
+  return
+}
+
+args = process.argv.slice(2).join(' ')
+if (new Set(['--format', '-f']).has(cmd)) {
+    format = Helpers.getArg(args, ['--format', '-f'])
+    if (format) {
+        template = Templates[format]
+    }
+}
+else {
+    template = Templates['markdown']
+}
+
+if (new Set(['--stdout', '-s']).has(cmd)) {
+    stdout = true
+}
+
+var changelogPath = Changelog.getPath()
+
+if (!changelogPath) {
+    var file = template === 'markdown' ? 'CHANGELOG.md' : 'CHANGELOG.html'
+    fs.closeSync(fs.openSync(file, 'a'));
+    changelogPath = `${process.cwd()}/${file}`
+}
+
+var oldChangelog = Changelog.load(changelogPath)
+var lastCommit = Changelog.getLatestCommit(oldChangelog)
+var data = Commit.getCommits(lastCommit)
+var commits = Commit.parseCommits(data)
+var next = Version.getNext(commits)
+
+var hasChanges = Changelog.hasChanges(commits)
+
+if ( ! hasChanges) {
+    console.log(`There were no new commits to release.`)
+    return
+}
+
+var newChangelog = Changelog.build(template, next, commits)
+
+if (stdout) {
+    process.stdout.write(newChangelog)
+    return
+}
+
+// write the changelog
+fs.writeFileSync(changelogPath, newChangelog)
+
+// bump the version
+var result = Package.bump(next)
+
+console.log(`Bumped ${result.file} version from ${result.oldVersion} to ${result.newVersion}`)

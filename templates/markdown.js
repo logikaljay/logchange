@@ -8,7 +8,7 @@ var template = {
 
         var output = `
             <!---
-            <div data-major="${version.major}" data-minor="${version.minor}" data-patch="${version.patch}" data-commit="${lastCommit.sha}" class="release-body commit">
+            <div data-major="${version.major}" data-minor="${version.minor}" data-patch="${version.patch}" data-commit="${lastCommit}" class="release-body commit">
             -->
             
             # v${version.major}.${version.minor}.${version.patch}

@@ -1,5 +1,49 @@
 
 <!---
+<div data-major="2" data-minor="0" data-patch="2" data-commit="c3b321c" class="release-body commit">
+-->
+
+# v2.0.2
+**jbaker** released this on *Tue Jun 13 2017 10:44:05 GMT+1200 (NZST)* - 2 commits make up this release
+
+## Fixes
+* **Package:** updating binary in package (880695c)
+* **Hashbang:** use /usr/bin/env node instead of /usr/local/bin/node (6e8a71c)
+
+
+
+<!---
+<div data-major="2" data-minor="0" data-patch="1" data-commit="11530bb" class="release-body commit">
+-->
+
+# v2.0.1
+**jbaker** released this on *Tue Jun 13 2017 10:36:45 GMT+1200 (NZST)* - 1 commit makes up this release
+
+## Fixes
+* **CLI:** fixing incorrect hashbangs (11530bb)
+
+
+
+<!---
+<div data-major="2" data-minor="0" data-patch="0" data-commit="afc2394" class="release-body commit">
+-->
+
+# v2.0.0
+**jbaker** released this on *Thu Jun 01 2017 15:44:03 GMT+1200 (NZST)* - 3 commits make up this release
+
+## Breaking Changes
+* **rewrite:** complete rewrite of logchange (afc2394)
+
+
+## Features
+* **Version:** parse version correctly (b4d731a)
+
+
+## Fixes
+* **CLI:** updating cli (bee9b2c)
+
+
+<!---
 <div data-major="1" data-minor="1" data-patch="6" data-commit="6e8a71c" class="release-body commit">
 -->
 
@@ -8,7 +52,6 @@
 
 ## Fixes
 * **hashbang:** use /usr/bin/env node instead of /usr/local/bin/node (6e8a71c)
-
 
 
 <!---
