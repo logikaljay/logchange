@@ -1,3 +1,16 @@
+
+<!---
+<div data-major="2" data-minor="0" data-patch="3" data-commit="880695c" class="release-body commit">
+-->
+
+# v2.0.3
+**jbaker** released this on *Tue Jun 13 2017 10:41:31 GMT+1200 (NZST)* - 2 commits make up this release
+
+## Fixes
+* **hashbang:** use /usr/bin/env node instead of /usr/local/bin/node (6e8a71c)
+* **Package:** updating binary in package (880695c)
+
+
 <!---
 <div data-major="2" data-minor="0" data-patch="1" data-commit="11530bb" class="release-body commit">
 -->
