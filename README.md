@@ -4,6 +4,22 @@ Automatically generate a new version and changelog by parsing <a href="https://g
 
 ## Installation
 
+### Node 8.2.0+
+
+No need for installation, logchange can just be executed through npx.
+
+Add `npx logchange` as a script to your `package.json`
+
+```json
+{
+    ...
+    "scripts": {
+        ...
+        "logchange": "npx logchange"
+    }
+}
+```
+
 ### Global
 ```bash
 $ npm install -g logchange
@@ -13,8 +29,7 @@ $ npm install -g logchange
 ```bash
 $ npm install logchange
 ```
-
-Add logchange as a script to your `package.json`
+Add `logchange` as a script to your `package.json`
 
 ```json
 {
@@ -71,8 +86,8 @@ This will increment the PATCH version.
 1. Write your code
 2. Commit your code using <a href="https://gist.github.com/stephenparish/9941e89d80e2bc58a153#format-of-the-commit-message" target="_blank">angular style commits</a>
 3. Test your code
-4. Run `logchange` (globally) / Run `npm run logchange` (locally) / Run `yarn logchange` (locally/yarn)
-5. Commit your `package.json` and `CHANGELOG.md` with a `chore(Version): updating version and changelog` message. - message doesn't really matter - as long as its a `chore` otherwise, it may increment your version the next time you run `logchange`
+4. Run `npx logchange` (node 8.2.0+) / Run `npm run logchange` (locally) / Run `logchange` (globally)
+5. Commit your `package.json` and `CHANGELOG.md` with a `chore(Version): updating version and changelog` message. - message doesn't really matter - as long as its a `chore` otherwise, it may increment your version the next time you run `npx logchange`
 
 ## TODO
 
