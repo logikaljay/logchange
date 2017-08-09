@@ -1,5 +1,17 @@
 
 <!---
+<div data-major="2" data-minor="0" data-patch="3" data-commit="d56c034" class="release-body commit">
+-->
+
+# v2.0.3
+**jbaker** released this on *Thu Aug 10 2017 07:58:34 GMT+1200 (NZST)* - 1 commit makes up this release
+
+## Fixes
+* **Format:** autoselect format if CHANGELOG exists (d56c034)
+
+
+
+<!---
 <div data-major="2" data-minor="0" data-patch="2" data-commit="c3b321c" class="release-body commit">
 -->
 
