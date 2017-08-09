@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const {version: pkgVersion} = require('../package')
+const { version: pkgVersion } = require('../package')
 var path = require('path')
 var fs = require('fs')
 
@@ -18,16 +18,16 @@ var cmd = process.argv[2]
 const Helpers = require(path.join(__dirname, 'helpers'))
 
 const OPTIONS = [
-    ['-h', '--help', 'Shows this message'],
-    ['-f', '--format', 'Outputs the version how you want it', format],
-    ['-s', '--stdout', 'Output new changelog to stdout']
+  ['-h', '--help', 'Shows this message'],
+  ['-f', '--format', 'Outputs the version how you want it', format],
+  ['-s', '--stdout', 'Output new changelog to stdout']
 ]
 
 const COMMANDS = [
-    ['current', 'Shows the current version'],
-    ['next', 'Shows the next version'],
-    ['version', 'Update package and changelog'],
-    ['contributors', 'Shows the contributors to this project']
+  ['current', 'Shows the current version'],
+  ['next', 'Shows the next version'],
+  ['version', 'Update package and changelog'],
+  ['contributors', 'Shows the contributors to this project']
 ]
 
 const help = Helpers.help(OPTIONS, COMMANDS)
@@ -44,27 +44,29 @@ if (new Set(['--version', '-v']).has(cmd)) {
   return
 }
 
-args = process.argv.slice(2).join(' ')
-if (new Set(['--format', '-f']).has(cmd)) {
-    format = Helpers.getArg(args, ['--format', '-f'])
-    if (format) {
-        template = Templates[format]
-    }
-}
-else {
-    template = Templates['markdown']
-}
-
 if (new Set(['--stdout', '-s']).has(cmd)) {
-    stdout = true
+  stdout = true
 }
 
 var changelogPath = Changelog.getPath()
 
 if (!changelogPath) {
-    var file = template === 'markdown' ? 'CHANGELOG.md' : 'CHANGELOG.html'
-    fs.closeSync(fs.openSync(file, 'a'));
-    changelogPath = `${process.cwd()}/${file}`
+  var file = format === 'markdown' ? 'CHANGELOG.md' : 'CHANGELOG.html'
+  fs.closeSync(fs.openSync(file, 'a'))
+  changelogPath = `${process.cwd()}/${file}`
+} else {
+  format = changelogPath.indexOf('.html') > -1 ? 'html' : 'markdown'
+}
+
+args = process.argv.slice(2).join(' ')
+if (new Set(['--format', '-f']).has(cmd)) {
+  format = Helpers.getArg(args, ['--format', '-f'])
+}
+
+if (format) {
+  template = Templates[format]
+} else {
+  template = Templates['markdown']
 }
 
 var oldChangelog = Changelog.load(changelogPath)
@@ -75,16 +77,16 @@ var next = Version.getNext(commits)
 
 var hasChanges = Changelog.hasChanges(commits)
 
-if ( ! hasChanges) {
-    console.log(`There were no new commits to release.`)
-    return
+if (!hasChanges) {
+  console.log(`There were no new commits to release.`)
+  return
 }
 
 var newChangelog = Changelog.build(template, next, commits)
 
 if (stdout) {
-    process.stdout.write(newChangelog)
-    return
+  process.stdout.write(newChangelog)
+  return
 }
 
 // write the changelog
@@ -93,4 +95,6 @@ fs.writeFileSync(changelogPath, newChangelog)
 // bump the version
 var result = Package.bump(next)
 
-console.log(`Bumped ${result.file} version from ${result.oldVersion} to ${result.newVersion}`)
+console.log(
+  `Bumped ${result.file} version from ${result.oldVersion} to ${result.newVersion}`
+)
